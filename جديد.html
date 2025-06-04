@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ألعابك هنا | متجر ألعاب الكمبيوتر</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Tajawal', sans-serif;
+      background-color: #0e0e1a;
+      color: #fff;
+    }
+    header {
+      background: linear-gradient(135deg, #cc00ff, #0070ff);
+      padding: 40px 20px;
+      text-align: center;
+      color: #fff;
+    }
+    header h1 {
+      font-size: 38px;
+    }
+    header p {
+      font-size: 20px;
+    }
+    nav {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      background-color: #1a1a2f;
+      padding: 15px;
+      flex-wrap: wrap;
+    }
+    nav button {
+      background-color: #cc00ff;
+      border: none;
+      border-radius: 8px;
+      padding: 10px 18px;
+      color: #000;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    nav button:hover {
+      background-color: #ffffff;
+    }
+    #searchBar {
+      width: 60%;
+      padding: 12px;
+      margin: 20px auto;
+      display: block;
+      font-size: 18px;
+      border-radius: 10px;
+      border: 2px solid #cc00ff;
+      background-color: #111;
+      color: #fff;
+    }
+    .games-section {
+      padding: 30px 20px;
+      max-width: 1200px;
+      margin: auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
+      gap: 20px;
+    }
+    .game {
+      background-color: #1a1a2f;
+      border: 2px solid #cc00ff;
+      border-radius: 15px;
+      padding: 15px;
+      box-shadow: 0 0 15px #00c3ff33;
+      transition: transform 0.3s ease;
+    }
+    .game:hover {
+      transform: scale(1.02);
+    }
+    .game img {
+      width: 100%;
+      border-radius: 10px;
+    }
+    .game h3 {
+      color: #cc00ff;
+      margin-top: 10px;
+    }
+    .game p {
+      font-size: 16px;
+      margin: 5px 0;
+    }
+    .button {
+      display: inline-block;
+      margin-top: 10px;
+      padding: 10px 16px;
+      background: #cc00ff;
+      color: #000;
+      border-radius: 8px;
+      font-weight: bold;
+      text-decoration: none;
+    }
+    .button:hover {
+      background: #cc00ff;
+      color: #fff;
+    }
+    .contact {
+      background-color: #111;
+      text-align: center;
+      padding: 40px 20px;
+      margin-top: 40px;
+      border-top: 4px solid #cc00ff;
+    }
+    .contact h2 {
+      color: #cc00ff;
+      font-size: 28px;
+    }
+    .contact p a {
+      color: #cc00ff;
+      text-decoration: none;
+      font-size: 18px;
+    }
+    .contact p a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>🎮 Al3abk Hena</h1>
+    <p>Original Games | Fast Activation | Comptetive Prices</p>
+  </header>
+
+  <nav>
+    <button onclick="filterGames('all')">All</button>
+    <button onclick="filterGames('رياضة')">Sports</button>
+    <button onclick="filterGames('أكشن')">Action</button>
+    <button onclick="filterGames('مغامرة')">Adventure</button>
+    <button onclick="filterGames('RPG')">RPG</button>
+    <button onclick="filterGames('رعب')">Horror</button>
+  </nav>
+
+  <input type="text" id="searchBar" onkeyup="searchGames()" placeholder=" .... Search ">
+
+  <section class="games-section" id="gamesContainer">
+    <!-- سيتم إدخال الألعاب هنا ديناميكياً عبر JavaScript -->
+  </section>
+
+  <section class="contact">
+    <h2>📞 تواصل معنا</h2>
+    <p>واتساب: <a href="https://wa.me/201225942442" target="_blank">اضغط هنا</a></p>
+    <p>إنستغرام: <a href="https://instagram.com/al3abk-hena" target="_blank">@al3abk-hena</a></p>
+    <p>البريد الإلكتروني: 3al3abkhena@gmail.com</p>
+  </section>
+
+  <script>
+    const games = [
+      {
+        title: "PES 17",
+        category: "رياضة",
+        price: "30",
+        img: "https://cdn.cloudflare.steamstatic.com/steam/apps/456610/header.jpg",
+        link: "https://wa.me/201225942442?text=أرغب%20في%20شراء%20PES%2017",
+        desc: "⚽ تجربة كرة القدم الواقعية مع PES 2017، تحسينات في الذكاء الاصطناعي والتحكم."
+      },
+      {
+        title: "PES 18",
+        category: "رياضة",
+        price: "30",
+        img: "https://cdn.cloudflare.steamstatic.com/steam/apps/592580/header.jpg",
+        link: "https://wa.me/201225942442?text=أرغب%20في%20شراء%20PES%2018",
+        desc: "⚽ PES 2018 مع جرافيك محسن وواقعية أكبر في حركة اللاعبين."
+      },
+      {
+        title: "PES 13",
+        category: "رياضة",
+        price: "30",
+        img: "https://torrent4you.org/wp-content/uploads/pro-evolution-soccer-2013.jpg",
+        link: "https://wa.me/201225942442?text=أرغب%20في%20شراء%20PES%2013",
+        desc: "⚽ كلاسيكو كرة القدم مع PES 2013، ذكريات لا تنسى مع التحكم السلس."
+      },
+      {
+        title: "PES 21",
+        category: "رياضة",
+        price: "100",
+        img: "https://cdn.cloudflare.steamstatic.com/steam/apps/1259970/header.jpg",
+        link: "https://wa.me/201225942442?text=أرغب%20في%20شراء%20PES%2021",
+        desc: "⚽ PES 2021 Season Update مع فرق وانتقالات محدثة."
+      },
+      {
+        title: "PES 19",
+        category: "رياضة",
+        price: "30",
+        img: "https://upload.wikimedia.org/wikipedia/ar/2/29/%D8%BA%D9%84%D8%A7%D9%81_%D9%81%D9%86%D9%8A_%D9%84%D9%84%D8%B9%D8%A8%D8%A9_%D8%A8%D8%B1%D9%88_%D8%A5%D9%81%D9%88%D9%84%D9%88%D8%B4%D9%86_%D8%B3%D9%88%D9%83%D8%B1_2019.jpg",
+        link: "https://wa.me/201225942442?text=أرغب%20في%20شراء%20PES%2019",
+        desc: "⚽ PES 2019 مع تحسينات في نظام اللعب وإضافات جديدة."
+      },
+      {
+        title: "FIFA 22",
+        category: "رياضة",
+        price: "40",
+        img: "https://cdn.cloudflare.steamstatic.com/steam/apps/1506830/header.jpg",
+        link: "https://wa.me/201225942442?text=أرغب%20في%20شراء%20FIFA%2022",
+        desc: "⚽ FIFA 22 مع تقنية HyperMotion الجديدة لمحاكاة أكثر واقعية."
+      },
+      {
+        title: "FIFA 21",
+        category: "رياضة",
+        price: "40",
+        img: "https://cdn.cloudflare.steamstatic.com/steam/apps/1313860/header.jpg",
+        link: "https://wa.me/201225942442?text=أرغب%20في%20شراء%20FIFA%2021",
+        desc: "⚽ FIFA 21 مع تحسينات في نظام اللعب وميزات Career Mode الجديدة."
+      },
+      {
+        title: "GTA San Andreas",
+        category: "مغامرة",
+        price: "30",
+        img: "https://cdn.cloudflare.steamstatic.com/steam/apps/12120/header.jpg",
+        link: "https://wa.me/201225942442?text=أرغب%20في%20شراء%20GTA%20San%20Andreas",
+        desc: "🚗 العودة إلى لوس سانتوس في واحدة من أفضل ألعاب GTA الكلاسيكية."
+      },
+      {
+        title: "GTA Vice City",
+        category: "مغامرة",
+        price: "30",
+        img: "https://cdn.cloudflare.steamstatic.com/steam/apps/12110/header.jpg",
+        link: "https://wa.me/201225942442?text=أرغب%20في%20شراء%20GTA%20Vice%20City",
+        desc: "🚗 مغامرات في مدينة فيس سيتي مستوحاة من الثمانينيات."
+      },
+      {
+        title: "GTA V",
+        category: "مغامرة",
+        price: "50",
+        img: "https://cdn.cloudflare.steamstatic.com/steam/apps/271590/header.jpg",
+        link: "https://wa.me/201225942442?text=أرغب%20في%20شراء%20GTA%20V",
+        desc: "🚗 مدينة لوس سانتوس الضخمة، مهام وقصص لا تُنسى."
+      },
+      {
+        title: "Resident Evil Village",
+        category: "رعب",
+        price: "50",
+        img: "https://cdn.cloudflare.steamstatic.com/steam/apps/1196590/header.jpg",
+        link: "https://wa.me/201225942442?text=أرغب%20في%20شراء%20Resident%20Evil%20Village",
+        desc: "👻 مغامرة رعب مذهلة ورسوميات فائقة في عالم غامض وخطير."
+      },
+      {
+        title: "Resident Evil 2 Remake",
+        category: "رعب",
+        price: "50",
+        img: "https://cdn.cloudflare.steamstatic.com/steam/apps/883710/header.jpg",
+        link: "https://wa.me/201225942442?text=أرغب%20في%20شراء%20Resident%20Evil%202%20Remake",
+        desc: "🧟‍♂️ عُد إلى مدينة راكون مع نسخة معاد تصميمها بالكامل من ريزدنت إيفل 2، بتجربة رعب واقعية مذهلة."
+      },
+      {
+        title: "Resident Evil 3 Remake",
+        category: "رعب",
+        price: "50",
+        img: "https://cdn.cloudflare.steamstatic.com/steam/apps/952060/header.jpg",
+        link: "https://wa.me/201225942442?text=أرغب%20في%20شراء%20Resident%20Evil%203%20Remake",
+        desc: "😱 اهرب من نيميسيس في مدينة راكون في نسخة جديدة مليئة بالإثارة والخوف."
+      },
+      {
+        title: "Resident Evil 4 Remake",
+        category: "رعب",
+        price: "50",
+        img: "https://cdn.cloudflare.steamstatic.com/steam/apps/2050650/header.jpg",
+        link: "https://wa.me/201225942442?text=أرغب%20في%20شراء%20Resident%20Evil%204%20Remake",
+        desc: "🔫 تجربة محسنة من اللعبة الأسطورية، مع رسومات ومؤثرات جديدة كليًا."
+      },
+      {
+        title: "Resident Evil 7: Biohazard",
+        category: "رعب",
+        price: "50",
+        img: "https://cdn.cloudflare.steamstatic.com/steam/apps/418370/header.jpg",
+        link: "https://wa.me/201225942442?text=أرغب%20في%20شراء%20Resident%20Evil%207%20Biohazard",
+        desc: "🏚️ بداية جديدة للسلسلة بنظام منظور الشخص الأول وتجربة رعب نفسية لا تُنسى."
+      },
+      {
+        title: "FIFA 23",
+        category: "رياضة",
+        price: "50",
+        img: "https://cdn.cloudflare.steamstatic.com/steam/apps/1811260/header.jpg",
+        link: "https://wa.me/201225942442?text=أرغب%20في%20شراء%20FIFA%2023",
+        desc: "⚽ آخر إصدار من FIFA من EA، مع تحسينات اللعب والفرق المحدثة."
+      },
+      {
+         title: "Assassin’s Creed Mirage: Master Assassin Edition",
+  category: "أكشن",
+  price: "50",
+  img: "https://staticctf.ubisoft.com/J3yJr34U2pZ2Ieem48Dwy9uqj5PNUQTn/4jk9umchC6RomrmUMzJj4k/8d5ab496f13c70defa3f3ae5f3738f40/acm-page-meta-960x540.jpg", // صورة جديدة عالية الجودة
+  link: "https://wa.me/201225942442?text=أرغب%20في%20شراء%20Assassin’s%20Creed%20Mirage%20Master%20Assassin%20Edition",
+  desc: "🗡️ عُد إلى جذور السلسلة في بغداد مع إصدار خاص يتضمن محتوى حصري ومكافآت إضافية."
+      },
+      {
+        title: "The Last of Us: Part II – Remastered",
+        category: "أكشن",
+        price: "50",
+        img: "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2531310/header.jpg?t=1746152571",
+        link: "https://wa.me/201225942442?text=أرغب%20في%20شراء%20The%20Last%20of%20Us%20Part%20II%20Remastered",
+        desc: "🧟 رحلة مليئة بالعاطفة والصراع في عالم ما بعد الانهيار، مع رسوميات محسنة."
+      },
+      {
+        title: "The Last of Us: Part I",
+        category: "أكشن",
+        price: "50",
+        img: "https://cdn.cloudflare.steamstatic.com/steam/apps/1888930/header.jpg",
+        link: "https://wa.me/201225942442?text=أرغب%20في%20شراء%20The%20Last%20of%20Us%20Part%20I",
+        desc: "🧟 كلاسيكية نوتي دوج المعاد بناؤها بالكامل مع رسوميات ومؤثرات جديدة."
+      },
+      {
+        title: "Dying Light 2: Stay Human – Ultimate Edition",
+        category: "أكشن",
+        price: "50",
+        img: "https://store-images.s-microsoft.com/image/apps.24585.14583597044987898.ec2e6a35-cbe5-4fcd-b8bc-8e59b3264b91.572f20d0-a6f0-48ea-86b3-d93789cb203d?mode=scale&q=90&h=1080&w=1920&background=%23FFFFFF",
+        link: "https://wa.me/201225942442?text=أرغب%20في%20شراء%20Dying%20Light%202%20Stay%20Human%20Ultimate%20Edition",
+        desc: "🏙️ قتال الزومبي في مدينة مفتوحة مع إصدار يتضمن كل المحتوى الإضافي."
+      },
+      {
+        title: "Grand Theft Auto IV",
+        category: "مغامرة",
+        price: "40",
+        img: "https://cdn.cloudflare.steamstatic.com/steam/apps/12210/header.jpg",
+        link: "https://wa.me/201225942442?text=أرغب%20في%20شراء%20Grand%20Theft%20Auto%20IV",
+        desc: "🏙️ قصة نيكو بيلك في ليبرتي سيتي، واحدة من أكثر قصص GTA عمقًا."
+      },
+      {
+        title: "Call of Duty: Black Ops 3",
+        category: "تصويب",
+        price: "40",
+        img: "https://cdn.cloudflare.steamstatic.com/steam/apps/311210/header.jpg",
+        link: "https://wa.me/201225942442?text=أرغب%20في%20شراء%20Call%20of%20Duty%20Black%20Ops%203",
+        desc: "🔫 حرب المستقبل مع نظام حركة متطور ووضع Zombies المذهل."
+      },
+      {
+        title: "Watch Dogs 2: Gold Edition",
+        category: "أكشن",
+        price: "30",
+        img: "https://cdn.cloudflare.steamstatic.com/steam/apps/447040/header.jpg",
+        link: "https://wa.me/201225942442?text=أرغب%20في%20شراء%20Watch%20Dogs%202%20Gold%20Edition",
+        desc: "💻 إصدار شامل مع كل المحتوى الإضافي، اختراق في عالم مفتوح في سان فرانسيسكو."
+      },
+      {
+        title: "Call of Duty: Black Ops",
+        category: "تصويب",
+        price: "30",
+        img: "https://cdn.cloudflare.steamstatic.com/steam/apps/42700/header.jpg",
+        link: "https://wa.me/201225942442?text=أرغب%20في%20شراء%20Call%20of%20Duty%20Black%20Ops",
+        desc: "🔫 كلاسيكية كول أوف ديوتي في الحرب الباردة مع وضع Zombies الأسطوري."
+      },
+      {
+        title: "Mafia 3: Definitive Edition",
+        category: "أكشن",
+        price: "40",
+        img: "https://cdn.cloudflare.steamstatic.com/steam/apps/1030840/header.jpg",
+        link: "https://wa.me/201225942442?text=أرغب%20في%20شراء%20Mafia%203%20Definitive%20Edition",
+        desc: "🎩 إصدار نهائي مع كل المحتوى الإضافي، قصة انتقام في نيو بوردو."
+      },
+      {
+        title: "Sons of the Forest",
+        category: "رعب",
+        price: "30",
+        img: "https://cdn.cloudflare.steamstatic.com/steam/apps/1326470/header.jpg",
+        link: "https://wa.me/201225942442?text=أرغب%20في%20شراء%20Sons%20of%20the%20Forest",
+        desc: "🌲 البقاء على قيد الحياة في جزيرة مسكونة بمخلوقات مرعبة."
+      },
+      {
+        title: "HITMAN 3",
+        category: "أكشن",
+        price: "40",
+        img: "https://cdn.cloudflare.steamstatic.com/steam/apps/1659040/header.jpg",
+        link: "https://wa.me/201225942442?text=أرغب%20في%20شراء%20HITMAN%203",
+        desc: "🎩 الفصل الأخير من ثلاثية وورلد أوف أسانيشن، أكثر مهام هيتمان إثارة."
+      },
+      {
+        title: "Mortal Kombat XL",
+        category: "قتال",
+        price: "30",
+        img: "https://cdn-ext.fanatical.com/production/product/1280x720/a6280348-5c95-4d33-a299-550f50d8b9b0.jpeg",
+        link: "https://wa.me/201225942442?text=أرغب%20في%20شراء%20Mortal%20Kombat%20XL",
+        desc: "🥋 إصدار شامل مع كل المحاربين والمحتوى الإضافي، أكثر ألعاب القتال دموية."
+      },
+      {
+        title: "Mortal Kombat X",
+        category: "قتال",
+        price: "30",
+        img: "https://cdn.cloudflare.steamstatic.com/steam/apps/307780/header.jpg",
+        link: "https://wa.me/201225942442?text=أرغب%20في%20شراء%20Mortal%20Kombat%20X",
+        desc: "🥋 اشتبك في معارك دموية شرسة مع نظام قتال متطور وحركات فنية قاتلة في هذه الحلقة من السلسلة الأسطورية."
+      },
+      {
+        title: "Battlefield 4",
+        category: "تصويب",
+        price: "50",
+        img: "https://cdn.cloudflare.steamstatic.com/steam/apps/1238860/header.jpg",
+        link: "https://wa.me/201225942442?text=أرغب%20في%20شراء%20Battlefield%204",
+        desc: "🌍 حرب حديثة مع تدمير بيئي مذهل ومواجهات عسكرية ضخمة."
+      },
+      {
+        title: "Battlefield Bad Company 2",
+        category: "تصويب",
+        price: "30",
+        img: "https://cdn.cloudflare.steamstatic.com/steam/apps/24960/header.jpg",
+        link: "https://wa.me/201225942442?text=أرغب%20في%20شراء%20Battlefield%20Bad%20Company%202",
+        desc: "💥 كلاسيكية باتلفيلد مع تدمير كامل للبيئة وفريق باد كومباني المميز."
+      },
+      {
+        title: "Battlefield 3",
+        category: "تصويب",
+        price: "40",
+        img: "https://wongstore.com/upload/hinhanh/P8QpJ_bf3.png",
+        link: "https://wa.me/201225942442?text=أرغب%20في%20شراء%20Battlefield%203",
+        desc: "🌍 حرب حديثة بتقنية Frostbite، معارك ضخمة وتدمير بيئي واقعي في ساحات قتال متنوعة."
+      },
+      {
+        title: "HITMAN Absolution",
+        category: "أكشن",
+        price: "30",
+        img: "https://cdn.cloudflare.steamstatic.com/steam/apps/203140/header.jpg",
+        link: "https://wa.me/201225942442?text=أرغب%20في%20شراء%20HITMAN%20Absolution",
+        desc: "🎯 عميل 47 في مهمة شخصية مع نظام تمويه وتنكر محسن."
+      },
+      {
+        title: "The Dark Pictures Anthology: The Devil in Me",
+        category: "رعب",
+        price: "50",
+        img: "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/1567020/header.jpg?t=1676560649",
+        link: "https://wa.me/201225942442?text=أرغب%20في%20شراء%20The%20Devil%20in%20Me",
+        desc: "👹 تجربة رعب تفاعلية حيث تقرر مصير الشخصيات في فندق قاتل مستوحى من جرائم القتل الحقيقية لـ H.H. Holmes."
+      },
+      {
+        title: "AMENTI",
+        category: "رعب",
+        price: "30",
+        img: "https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/3292260/header.jpg?t=1744985454",
+        link: "https://wa.me/201225942442?text=أرغب%20في%20شراء%20AMENTI",
+        desc: "مصور يدخل إلى الأهرامات العظيمة لتصوير بقايا الفرعون رودامون، لكنه سرعان ما يصاب بلعنة شريرة، حيث يوقظ القبر القديم قوى مظلمة تهدد عقله."
+      },
+      {
+        title: "Call of Duty: Black Ops 2",
+        category: "تصويب",
+        price: "30",
+        img: "https://cdn.cloudflare.steamstatic.com/steam/apps/202970/header.jpg",
+        link: "https://wa.me/201225942442?text=أرغب%20في%20شراء%20Call%20of%20Duty%20Black%20Ops%202",
+        desc: "⚔️ قصة متفرعة بين الماضي والمستقبل مع نظام اختيارات يؤثر على الأحداث."
+      }
+    ];
+
+    const gamesContainer = document.getElementById("gamesContainer");
+
+    function displayGames(filtered = games) {
+      gamesContainer.innerHTML = "";
+      filtered.forEach(game => {
+        gamesContainer.innerHTML += `
+          <div class="game" data-category="${game.category}">
+            <img src="${game.img}" alt="${game.title}">
+            <h3>${game.title}</h3>
+            <p>${game.desc}</p>
+            <p>💰 السعر: ${game.price} جنيه مصري</p>
+            <a href="${game.link}" class="button" target="_blank">Order Now</a>
+          </div>
+        `;
+      });
+    }
+
+    function filterGames(category) {
+      if (category === 'all') {
+        displayGames();
+      } else {
+        const filtered = games.filter(game => game.category === category);
+        displayGames(filtered);
+      }
+    }
+
+    function searchGames() {
+      const input = document.getElementById("searchBar").value.toLowerCase();
+      const filtered = games.filter(game => game.title.toLowerCase().includes(input));
+      displayGames(filtered);
+    }
+
+    // Display all games by default
+    displayGames();
+  </script>
+
+</body>
+</html>
